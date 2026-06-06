@@ -1,7 +1,5 @@
 # VendorBridge 🌉
 
-![VendorBridge Banner](frontend/src/assets/hero.png)
-
 **VendorBridge** is a modern, high-performance B2B procurement and vendor management platform built for speed and transparency. Featuring a bold Neo-Brutalist design, VendorBridge streamlines the entire supply chain workflow from Request for Quotation (RFQ) to Purchase Order (PO) generation and Invoicing.
 
 ## 🚀 Features
@@ -66,16 +64,3 @@ Start the frontend development server:
 ```bash
 npm run dev
 ```
-
-The frontend will be available at `http://localhost:5173` and it will securely communicate with the backend running on `http://localhost:5000`.
-
-## 👨‍💻 Team
-
-Built with ❤️ by:
-- [Dev1822](https://github.com/Dev1822)
-- [mann2007-ptl](https://github.com/mann2007-ptl)
-- [anshp2931-gif](https://github.com/anshp2931-gif)
-- [neev3654](https://github.com/neev3654)
-
----
-*This project was built during a 24-hour Hackathon sprint.*
