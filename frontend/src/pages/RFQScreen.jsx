@@ -1,3 +1,4 @@
+import { API_URL } from '../config';
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { AuthContext } from '../context/AuthContext';
@@ -10,7 +11,7 @@ const RFQScreen = () => {
     const fetchRFQs = async () => {
         const token = localStorage.getItem('token');
         try {
-            const res = await axios.get('http://localhost:5000/api/rfqs', {
+            const res = await axios.get(`${API_URL}/api/rfqs`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setRfqs(res.data);
@@ -30,7 +31,7 @@ const RFQScreen = () => {
         const data = Object.fromEntries(formData.entries());
         
         try {
-            await axios.post('http://localhost:5000/api/rfqs', data, {
+            await axios.post(`${API_URL}/api/rfqs`, data, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setIsCreating(false);

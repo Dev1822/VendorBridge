@@ -1,3 +1,4 @@
+import { API_URL } from '../config';
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { AuthContext } from '../context/AuthContext';
@@ -15,7 +16,7 @@ const POScreen = () => {
     const fetchPOs = async () => {
         const token = localStorage.getItem('token');
         try {
-            const url = user.role === 'Vendor' ? 'http://localhost:5000/api/pos/my' : 'http://localhost:5000/api/pos';
+            const url = user.role === 'Vendor' ? `${API_URL}/api/pos/my` : `${API_URL}/api/pos`;
             const res = await axios.get(url, {
                 headers: { Authorization: `Bearer ${token}` }
             });
@@ -33,7 +34,7 @@ const POScreen = () => {
         const token = localStorage.getItem('token');
         try {
             const tax = po.totalAmount * 0.125;
-            await axios.post('http://localhost:5000/api/invoices', {
+            await axios.post(`${API_URL}/api/invoices`, {
                 poId: po._id,
                 vendorId: po.vendorId?._id || po.vendorId,
                 amount: po.totalAmount,

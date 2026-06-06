@@ -1,3 +1,4 @@
+import { API_URL } from '../config';
 import React, { useState, useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import { useNavigate, Link } from 'react-router-dom';
@@ -20,7 +21,7 @@ const Register = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.post('http://localhost:5000/api/auth/register', formData);
+            const res = await axios.post(`${API_URL}/api/auth/register`, formData);
             localStorage.setItem('token', res.data.token);
             window.location.href = '/'; 
         } catch (err) {
@@ -30,7 +31,7 @@ const Register = () => {
 
     const handleGoogleSuccess = async (credentialResponse) => {
         try {
-            const res = await axios.post('http://localhost:5000/api/auth/google', {
+            const res = await axios.post(`${API_URL}/api/auth/google`, {
                 token: credentialResponse.credential
             });
             localStorage.setItem('token', res.data.token);

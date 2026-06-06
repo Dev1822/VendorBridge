@@ -1,3 +1,4 @@
+import { API_URL } from '../config';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -8,7 +9,7 @@ const Reports = () => {
     const fetchReports = async () => {
         const token = localStorage.getItem('token');
         try {
-            const res = await axios.get('http://localhost:5000/api/reports', {
+            const res = await axios.get(`${API_URL}/api/reports`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setData(res.data);

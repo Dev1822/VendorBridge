@@ -1,3 +1,4 @@
+import { API_URL } from '../config';
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { AuthContext } from '../context/AuthContext';
@@ -16,7 +17,7 @@ const QuotationScreen = () => {
         const fetchRFQs = async () => {
             const token = localStorage.getItem('token');
             try {
-                const res = await axios.get('http://localhost:5000/api/rfqs', {
+                const res = await axios.get(`${API_URL}/api/rfqs`, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 setRfqs(res.data);
@@ -112,7 +113,7 @@ const QuotationScreen = () => {
         const fetchProcData = async () => {
             const token = localStorage.getItem('token');
             try {
-                const rfqsRes = await axios.get('http://localhost:5000/api/rfqs', {
+                const rfqsRes = await axios.get(`${API_URL}/api/rfqs`, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 setProcRfqs(rfqsRes.data);
@@ -129,7 +130,7 @@ const QuotationScreen = () => {
         const fetchQuotes = async () => {
             const token = localStorage.getItem('token');
             try {
-                const res = await axios.get(`http://localhost:5000/api/quotations/rfq/${selectedProcRfq}`, {
+                const res = await axios.get(`${API_URL}/api/quotations/rfq/${selectedProcRfq}`, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 setQuotations(res.data);
@@ -144,7 +145,7 @@ const QuotationScreen = () => {
         const token = localStorage.getItem('token');
         const selected = rfqs.find(r => r._id === selectedRFQ);
         try {
-            await axios.post('http://localhost:5000/api/quotations', {
+            await axios.post(`${API_URL}/api/quotations`, {
                 rfqId: selectedRFQ,
                 itemsPricing: [{ itemName: selected.itemName, unitPrice: unitPrice, quantity: selected.quantity }],
                 totalAmount: unitPrice * selected.quantity,
@@ -231,7 +232,7 @@ const QuotationScreen = () => {
     const handleAcceptQuote = async (quoteId) => {
         const token = localStorage.getItem('token');
         try {
-            await axios.put(`http://localhost:5000/api/quotations/${quoteId}`, {
+            await axios.put(`${API_URL}/api/quotations/${quoteId}`, {
                 status: 'Under Review'
             }, { headers: { Authorization: `Bearer ${token}` } });
             

@@ -1,3 +1,4 @@
+import { API_URL } from '../config';
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import axios from 'axios';
@@ -12,7 +13,7 @@ const Dashboard = () => {
         const fetchDashboardData = async () => {
             const token = localStorage.getItem('token');
             try {
-                const res = await axios.get('http://localhost:5000/api/dashboard', {
+                const res = await axios.get(`${API_URL}/api/dashboard`, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 setStats(res.data.stats);

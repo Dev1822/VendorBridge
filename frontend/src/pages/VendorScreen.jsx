@@ -1,3 +1,4 @@
+import { API_URL } from '../config';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -9,7 +10,7 @@ const VendorScreen = () => {
         const fetchVendors = async () => {
             const token = localStorage.getItem('token');
             try {
-                const res = await axios.get('http://localhost:5000/api/vendors', {
+                const res = await axios.get(`${API_URL}/api/vendors`, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 setVendors(res.data);

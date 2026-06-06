@@ -1,3 +1,4 @@
+import { API_URL } from '../config';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -8,7 +9,7 @@ const ApprovalScreen = () => {
     const fetchPending = async () => {
         const token = localStorage.getItem('token');
         try {
-            const res = await axios.get('http://localhost:5000/api/quotations/pending', {
+            const res = await axios.get(`${API_URL}/api/quotations/pending`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setPendingQuotes(res.data);
@@ -24,7 +25,7 @@ const ApprovalScreen = () => {
     const handleApprove = async (quoteId) => {
         const token = localStorage.getItem('token');
         try {
-            await axios.put(`http://localhost:5000/api/quotations/${quoteId}`, {
+            await axios.put(`${API_URL}/api/quotations/${quoteId}`, {
                 status: 'Approved'
             }, { headers: { Authorization: `Bearer ${token}` } });
             alert("Quotation Approved! Purchase Order will be generated.");

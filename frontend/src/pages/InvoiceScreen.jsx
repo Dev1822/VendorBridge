@@ -1,3 +1,4 @@
+import { API_URL } from '../config';
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { AuthContext } from '../context/AuthContext';
@@ -11,7 +12,7 @@ const InvoiceScreen = () => {
     const fetchInvoices = async () => {
         const token = localStorage.getItem('token');
         try {
-            const url = user.role === 'Vendor' ? 'http://localhost:5000/api/invoices/my' : 'http://localhost:5000/api/invoices';
+            const url = user.role === 'Vendor' ? `${API_URL}/api/invoices/my` : `${API_URL}/api/invoices`;
             const res = await axios.get(url, {
                 headers: { Authorization: `Bearer ${token}` }
             });
